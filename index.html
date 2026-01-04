@@ -18,19 +18,19 @@
                 <div class="pop-up-box">🛈 Sample Text, ⚠ Sample Warning</div>
             </div>
 
-            <div class="Form">
-
+            <div class="overlay" id="overlay-effect"></div>
+            <div class="Form" id="form-window">
+                <form action=""id="form"></form>
             </div>
 
             <div class="row list-container">
-
-                <div class="list-box" id="list-box-id">
+                <div class="list-box">
                         <div class="column column-1">
                             <div class="info-box info-box-1">
                                 <p><span>Title</span></p>
                             </div>
                             <div class="info-box info-box-2">
-                                <p><span>Description</span> - <span>Date</span></p>
+                                <p><span>Description - Date</span></p>
                             </div>
                         </div>
                         <div class="column column-2">
@@ -45,12 +45,14 @@
                             </button>
                         </div>
                 </div>
-
             </div>
 
-            <button class="floating-action-button">
-                    click
-            </button>
+
+            <div class="floating-action-button" >
+                <button onclick="openFormWindow('create')" id="fab-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fff" d="M13 6a1 1 0 1 0-2 0v5H6a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5z"/></svg>
+                </button>
+            </div>
 
         </section>
     </main>
