@@ -1,225 +1,26 @@
-:root{
-    --primary-color: #4E598C;
-    --secondary-color: #FF8C42;
-    --alternative-color: #FF3C38;
-
-    --success: #0CCE6B; /*#157145*/
-    --warning: #F8C537; /*#F56416*/
-    --error: #ED254E; /*E3170A*/ /*#EF271B*/
-
-    --white-color:#FFFFFF;
-
-    --light-grey: #312F2F;
-    --mid-grey: #22181C; /*#0F110C*/
-    --dark-grey: #0C0C0C;
-    --dark: #000000;
-
-    --shadow: 0px 2px 6px 0px rgba(136, 136, 136, 0.331);
-}
-*, *::before, *::after{
-    margin: 0;
-    padding: 0;
-    font-family: Inter;
-    font-weight: 500;
-    box-sizing: border-box;
-}
-html, body{
-    min-height: 100%;
-    min-height: 100dvh;
-}
-
-body{
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    min-height: 100dvh;
-    background-color: var(--white-color);
-}
-
-main{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-/* p,span,b,h1,h2,h3,h4,h5,h6,i{
-    white-space: nowrap;
-    font-weight: 400;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-b{
-    font-weight: 600;
-} */
+try{
+        console.log("Validating Form");
+        
+        const inputs = document.querySelectorAll("input");
+        inputs.foreach((input)=>{
+            console.log(input.value);
+        });
 
 
-main>section{
-    width: 100%;
-    height: 100%;
-    /* border: 1px solid red; */
-
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-/* .row{
-    border: 1px solid red;
-} */
-
-.pop-up-container{
-    position: absolute;
-    top: 0;
-    overflow: hidden;
-    z-index: 10;
-    width: 100%;
-    padding: 0.5rem;
-    display: none;
-}
-.pop-up-box{
-    background-color: var(--white-color);
-    animation: slide-down 0.5s ease;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-}
-
-
-.list-container{
-    /* border: 1px solid blue; */
-    flex-grow: 1;
-}
-.list-box{
-    /* border: 1px solid red; */
-    height: 5rem;
-    display: flex;
-    justify-content: start;
-    border-bottom: 2px solid rgb(214, 214, 214);
-    overflow: hidden;
-}
-
-.list-box:hover>.column-2{
-    transition: 0.3s ease-in;
-    transform: translateX(0);
-}
-.hide-action-box>.column-2{
-    transition: 0.3s ease-out;
-    transform: translateX(100%);
-}
-
-
-.list-box>.column{
-    /* border: 1px solid red; */
-    height: 100%;
-}
-
-
-.list-box>.column-1{
-    flex-grow: 1;
-}
-.list-box>.column-1{
-    display: flex;
-    justify-content: start;
-    flex-direction: column;
-}
-.list-box>.column-1>.info-box{
-    /* border: 1px solid red; */
-    flex-grow: 1;
-    padding-left: 1rem;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-}
-
-.list-box>.column-1>.info-box-1>p,.list-box>.column-1>.info-box-1>span{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
-    font-size: 1.5rem;
-}
-
-.list-box>.column-1>.info-box-2>p,.list-box>.column-1>.info-box-2>span{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
-    font-size: 1rem;
-    color: rgb(101, 101, 101);
-}
-
-
-
-
-
-.list-box>.column-2{
-    /* width: 3rem; */
-    /* border: 1px solid blue; */
-    overflow: hidden;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-
-    transform: translateX(100%);
-}
-.list-box>.column-2>button{
-    outline: none;
-    border-style: none;
-    width: 5rem;
-    cursor: pointer;
-}
-
-.list-box>.column-2>button:nth-child(1){
-    background-color: var(--primary-color);
-}
-.list-box>.column-2>button:nth-child(1):hover{
-    transition: 0.3s ease;
-    background-color: #6172c2;
-}
-
-
-.list-box>.column-2>button:nth-child(2){
-    background-color: var(--secondary-color);
-}
-.list-box>.column-2>button:nth-child(2):hover{
-    transition: 0.3s ease;
-    background-color: #ff7723;
-}
-
-
-.list-box>.column-2>button:nth-child(3){
-    background-color: var(--alternative-color);
-}
-.list-box>.column-2>button:nth-child(3):hover{
-    transition: 0.3s ease;
-    background-color: #f6201c;
-}
-
-
-
-
-.floating-action-button{
-    border: 1px solid red;
-    padding: 1rem;
-    position: absolute;
-    z-index: 9;
-    right: 0;
-    bottom: 0;
-    cursor: pointer;
-    padding: 1rem;
-}
-
-
-
-
-
-
-@keyframes slide-down{
-    0%{
-        transform: translateY(-1000px);
+        return true;
     }
-    100%{
-        transform: translateY(0);
+    catch{
+        console.clear();
+        console.warn("Invalid Form");
+        return false;
     }
-}
+    // finally{
+    //     console.info("Todo list created!");
 
+    //     overlay.classList.remove("toggle-overlay");
+    //     form_window.classList.remove("toggle-window");
+    //     fab_btn.disabled=false;
+    //     create.innerHTML="";
+
+    //     return true;
+    // }
