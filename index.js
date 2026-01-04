@@ -20,7 +20,7 @@ let alertType = null;
 
 function openFormWindow(x){
     switch(x){
-        case 'create':
+        case "create":
             console.info("Creating todo");
             overlay.classList.toggle("toggle-overlay");
             form_window.classList.toggle("toggle-window");
@@ -78,6 +78,10 @@ form.addEventListener("submit",(e)=>{
                 console.info("Todo created.");
 
                 let inputs = document.querySelectorAll("input");
+                let title = inputs[0].value.toLowerCase().trim();
+                let description = inputs[1].value.toLowerCase().trim();
+                let date = inputs[2].value.toLowerCase().trim();
+
                 inputs.forEach((input)=>{
                     console.info(input);
 
@@ -91,9 +95,15 @@ form.addEventListener("submit",(e)=>{
                     pop_up_alert();
                 }
                 else{
-                    console.log();
-                }
+                    console.clear();
 
+                    console.info(`${title}\n${description}\n${date}`);
+                    if(title===""||description===""||date===""){
+                        alertType="missing_field";
+                        pop_up_alert();
+                        return false;
+                    }
+                }
                 return true;
             }
             catch{
@@ -125,9 +135,21 @@ function pop_up_alert(){
                 pop_up_content.innerHTML="";
             },3000);
             break;
+        case "missing_field":
+            pop_up.classList.toggle("toggle-pop-up");
+            pop_up_content.innerHTML+=`
+                <div>
+                    <p><span> 🛈 Please fill missing field. </span></p>
+                </div>
+            `;
+            setTimeout(()=>{
+                console.info("pop-up hidden");
+                pop_up.classList.remove("toggle-pop-up");
+                pop_up_content.innerHTML="";
+            },3000);
+            break;
         default:
             console.error("Invalid Parameter.");
             break;
     }
-
 }
