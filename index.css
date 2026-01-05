@@ -241,7 +241,7 @@ main{
     border: 1px solid var(--dark);
     background-color: var(--white-color);
     width: 35rem;
-    height: 30rem;
+    height: 27rem;
     position: absolute;
     z-index: 12;
     top: 50%;
@@ -263,15 +263,33 @@ main{
             /* border: 1px solid red; */
             
             &:nth-child(1){
-                p{
-                    /* border: 1px solid red; */
-                    width: 100%;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-                p>span{
-                    font-size: 1.5rem;
+                div{
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding-bottom: 0.3rem;
+
+                    button{
+                        cursor: pointer;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: none;
+                        outline: none;
+                        background-color: var(--white-color);
+                    }
+
+                    p{
+                        /* border: 1px solid red; */
+                        width: 100%;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    p>span{
+                        font-size: 1.5rem;
+                    }
                 }
             }
 
@@ -279,7 +297,7 @@ main{
                 flex-grow: 1;
                 display: flex;
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 1rem;
 
                 .input-container{
                     /* border: 1px solid red; */
@@ -364,7 +382,7 @@ main{
 @media(max-width:600px){
     .Form{
         width: 80%;
-        height: 65%;
+        height: 57%;
 
         form{
             .row{
