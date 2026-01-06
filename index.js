@@ -350,13 +350,62 @@ form.addEventListener("submit",(e)=>{
                 console.info(`NEW -> `, newTitle, newDescription, newDate);
                 
                 if(newTitle === "" || newDescription === "" || newDate === ""){
+                    closeFormWindow();
                     pop_up_alert("⚠ Please fill all required fields.");
                     return false;
                 }
 
-                
+                if(newTitle === currentTitle && newDescription === currentDescription && newDate === currentDate){
+                    closeFormWindow();
+                    pop_up_alert("⚠ No changes made.");
+                    return false; 
+                }
 
-               return true;
+                
+                const listExists = data.filter(item => item.TITLE === newTitle && item.DATE === newDate).length;
+                console.info("existing list: " + listExists);
+                if(listExists !== 0){
+                    pop_up_alert("⚠ List already exists.");
+                    return false; 
+                }
+
+                let updatedData={
+                    TITLE: newTitle,
+                    DESCRIPTION: newDescription,
+                    DATE: newDate,
+                }
+                data[updateIndex] = updatedData;
+                console.info("new data:", data);
+                closeFormWindow();
+                pop_up_update("🛈 Update Successful.");
+                
+                list_container.innerHTML="";
+                data.map((list, index)=>{
+                    list_container.innerHTML+=`
+                        <div class="list-box">
+                            <div class="column column-1">
+                                <div class="info-box info-box-1">
+                                    <p><span>${list.TITLE}</span></p>
+                                </div>
+                                <div class="info-box info-box-2">
+                                    <p><span>${list.DESCRIPTION} - ${list.DATE}</span></p>
+                                </div>
+                            </div>
+                            <div class="column column-2">
+                                <button type="button" data-index="${index}" onclick="openFormWindow('view',${index})">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="#fff" stroke-width="2"><path d="M3.275 15.296C2.425 14.192 2 13.639 2 12c0-1.64.425-2.191 1.275-3.296C4.972 6.5 7.818 4 12 4s7.028 2.5 8.725 4.704C21.575 9.81 22 10.361 22 12c0 1.64-.425 2.191-1.275 3.296C19.028 17.5 16.182 20 12 20s-7.028-2.5-8.725-4.704Z"/><path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0Z"/></g></svg>
+                                </button>
+                                <button type="button" data-index="${index}" onclick="openFormWindow('edit',${index})">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><mask id="SVG8dJ0oeeE" width="15" height="15" x="4" y="5" fill="#000" maskUnits="userSpaceOnUse"><path fill="#fff" d="M4 5h15v15H4z"/><path d="m13.586 7.414l-7.194 7.194c-.195.195-.292.292-.36.41c-.066.119-.1.252-.166.52l-.664 2.654c-.09.36-.135.541-.035.641s.28.055.641-.035l2.655-.664c.267-.066.4-.1.518-.167c.119-.067.216-.164.41-.359l7.195-7.194c.667-.666 1-1 1-1.414s-.333-.748-1-1.414l-.172-.172c-.667-.666-1-1-1.414-1s-.748.334-1.414 1"/></mask><g fill="none"><path stroke="#fff" stroke-width="2.7" d="m13.586 7.414l-7.194 7.194c-.195.195-.292.292-.36.41c-.066.119-.1.252-.166.52l-.664 2.654c-.09.36-.135.541-.035.641s.28.055.641-.035l2.655-.664c.267-.066.4-.1.518-.167c.119-.067.216-.164.41-.359l7.195-7.194c.667-.666 1-1 1-1.414s-.333-.748-1-1.414l-.172-.172c-.667-.666-1-1-1.414-1s-.748.334-1.414 1Z" mask="url(#SVG8dJ0oeeE)"/><path fill="#fff" d="m12.5 7.5l3-2l3 3l-2 3z"/></g></svg>
+                                </button>
+                                <button type="button" data-index="${index}" onclick="deleteList(${index})">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fff" d="M7 21q-.825 0-1.412-.587T5 19V6q-.425 0-.712-.288T4 5t.288-.712T5 4h4q0-.425.288-.712T10 3h4q.425 0 .713.288T15 4h4q.425 0 .713.288T20 5t-.288.713T19 6v13q0 .825-.587 1.413T17 21zM17 6H7v13h10zm-7 11q.425 0 .713-.288T11 16V9q0-.425-.288-.712T10 8t-.712.288T9 9v7q0 .425.288.713T10 17m4 0q.425 0 .713-.288T15 16V9q0-.425-.288-.712T14 8t-.712.288T13 9v7q0 .425.288.713T14 17M7 6v13z"/></svg>
+                                </button>
+                            </div>
+                        </div> 
+                    `;
+                });
+                return true;
             }
             catch{
                 console.clear();
@@ -383,6 +432,22 @@ function pop_up_alert(message){
     setTimeout(()=>{
         console.info("pop-up hidden");
         pop_up.classList.remove("toggle-pop-up");
+        pop_up_content.innerHTML="";
+    },3000);
+}
+function pop_up_update(message){
+    console.warn("Form is Invalid");
+
+    pop_up_content.innerHTML="";
+    pop_up.classList.toggle("toggle-update");
+    pop_up_content.innerHTML+=`
+        <div>
+            <p><span> ${message} </span></p>
+        </div>
+    `;
+    setTimeout(()=>{
+        console.info("pop-up hidden");
+        pop_up.classList.remove("toggle-update");
         pop_up_content.innerHTML="";
     },3000);
 }

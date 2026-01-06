@@ -105,6 +105,25 @@ main{
         }
     }
 }
+#pop-up-container-id.toggle-update{
+    display: flex;
+    z-index: 12;
+    
+    div{
+        width: 100%;
+        
+        p{
+            /* border: 1px solid red; */
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        p>span{
+            color: var(--success);
+        }
+    }
+}
 
 
 
